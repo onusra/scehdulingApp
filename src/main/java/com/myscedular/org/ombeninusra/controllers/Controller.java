@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+//This annotations means this is a rest controller
 @RestController
 public class Controller {
 
@@ -21,12 +22,15 @@ public class Controller {
     UserAccountService userAccountService;
 
 
+    //This registers a user and save them in the database
     @PostMapping
     public ResponseEntity<String> userRegistration(@RequestBody UserAccount userAccount){
 
         return userAccountService.registration(userAccount);
     }
 
+
+    //This returns all users
     @GetMapping("/getAllUsers")
     public List<UserAccount> getAllUser(){
         return userAccountService.getAllUsers();

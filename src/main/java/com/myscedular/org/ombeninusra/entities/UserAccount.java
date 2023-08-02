@@ -21,7 +21,7 @@ public class UserAccount {
     @Id
     int id;
 
-    @OneToMany(targetEntity = Schedule.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Schedule.class, orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name ="schedule", referencedColumnName = "id")
     private List<Schedule> scheduleList;
 

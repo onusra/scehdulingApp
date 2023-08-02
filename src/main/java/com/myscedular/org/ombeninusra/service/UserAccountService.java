@@ -19,7 +19,7 @@ public class UserAccountService {
 
     public ResponseEntity<String> registration(UserAccount userAccount){
         accountReposity.save(userAccount);
-        return ResponseEntity.ok(userAccount.getLastName() + " your account has been created");
+        return ResponseEntity.ok(userAccount.getFirstName() + " " + userAccount.getLastName() + " your account has been created");
     }
 
     public UserAccount getUserById(int id){

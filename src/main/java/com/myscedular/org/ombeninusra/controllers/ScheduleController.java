@@ -40,4 +40,12 @@ public class ScheduleController {
         return scheduleService.deleteScheduleById(id,scheduleName);
     }
 
+
+    //The put methods is used for updating a schedule.
+    @PutMapping("/update/{id}/{name}")
+    public ResponseEntity<String> scheduleUpdate
+            (@PathVariable("id") int id, @RequestBody Schedule schedule, @PathVariable("name") String name){
+        return scheduleService.updateSchedule(id,schedule,name);
+    }
+
 }
