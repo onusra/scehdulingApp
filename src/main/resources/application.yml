@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/schedule
+    username: postgres
+    password: Ali2020@
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  show-sql: true
