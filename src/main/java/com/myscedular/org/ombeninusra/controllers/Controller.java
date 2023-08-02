@@ -14,11 +14,16 @@ import java.util.List;
 
 @RestController
 public class Controller {
+
+
+    //Instantiating userAccount service class;
     @Autowired
     UserAccountService userAccountService;
 
+
     @PostMapping
     public ResponseEntity<String> userRegistration(@RequestBody UserAccount userAccount){
+
         return userAccountService.registration(userAccount);
     }
 

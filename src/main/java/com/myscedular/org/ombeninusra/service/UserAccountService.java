@@ -11,12 +11,19 @@ import java.util.List;
 @Service
 public class UserAccountService {
 
+    //Instantiating account Repo
     @Autowired
     private AccountRepository accountReposity;
+
+
 
     public ResponseEntity<String> registration(UserAccount userAccount){
         accountReposity.save(userAccount);
         return ResponseEntity.ok(userAccount.getLastName() + " your account has been created");
+    }
+
+    public UserAccount getUserById(int id){
+        return accountReposity.findById(id).get();
     }
 
     public List<UserAccount> getAllUsers(){

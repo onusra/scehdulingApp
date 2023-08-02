@@ -20,15 +20,19 @@ public class Schedule {
     @GeneratedValue(generator = "sequence", strategy = GenerationType.SEQUENCE)
     @Id
     int id;
+
+
     String taskName;
+
+
     String taskDescription;
+
+
     private java.sql.Time start;
     @Column(name = "local_time", columnDefinition = "TIME")
     private LocalTime localTime;
 
    @Column(name = "end_time", columnDefinition = "TIME")
    private LocalTime endTime;
-
-    //private java.sql.Time end;
 
 }
