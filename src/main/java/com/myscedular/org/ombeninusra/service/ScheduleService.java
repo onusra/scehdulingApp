@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,14 +71,42 @@ public class ScheduleService {
                 getUserById(id);
 
         //Using stream to filter the user having a given schedule name
-        Schedule schedule1 =
-                (Schedule) userAccount.getScheduleList().stream().filter(sc -> (name.
-                        equals(sc.getTaskName())));
-        userAccount.getScheduleList().remove(schedule1);
-        userAccount.getScheduleList().add(schedule);
+        Schedule schedule1 = userAccount.getScheduleList().stream().filter(sc -> (name.
+                        equals(sc.getTaskName()))).toList().get(0);
 
-        return ResponseEntity.ok(schedule1.
-                getTaskName() + " has been updated to " + schedule.getTaskName());
+
+        if(schedule.getTaskName() == null){
+            schedule.setTaskName(schedule1.getTaskName());
+        }
+
+        if(schedule.getTaskDescription() == null){
+            schedule.setTaskDescription(schedule1.getTaskDescription());
+        }
+
+        if(schedule.getLocalTime() == null){
+            schedule.setLocalTime(schedule1.getLocalTime());
+        }
+
+        if(schedule.getEndTime() == null){
+            schedule.setEndTime(schedule1.getEndTime());
+        }
+        String str = schedule1.getTaskName();
+        schedule.setId(schedule1.getId());
+
+        Collection<Schedule> sc = new java.util.ArrayList<>(userAccount.getScheduleList().
+                stream().filter(j -> j.getId() != schedule1.getId()).toList());
+
+
+        sc.add(schedule);
+
+
+        //userAccount.getScheduleList().remove(schedule1);
+        userAccount.getScheduleList().clear();
+        userAccount.getScheduleList().addAll(sc);
+
+        getUserAccountService.registration(userAccount);
+
+        return ResponseEntity.ok(str + " task has been updated to " + schedule.getTaskName() + " task.");
 
     }
 }
