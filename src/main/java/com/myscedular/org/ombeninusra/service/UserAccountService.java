@@ -1,5 +1,6 @@
 package com.myscedular.org.ombeninusra.service;
 
+import com.myscedular.org.ombeninusra.dao.Login;
 import com.myscedular.org.ombeninusra.entities.UserAccount;
 import com.myscedular.org.ombeninusra.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class UserAccountService {
 
     public List<UserAccount> getAllUsers(){
         return accountReposity.findAll();
+    }
+
+    public ResponseEntity<String> login(Login login){
+        return ResponseEntity.ok("You have logged in with the following inf : " + login);
     }
 }

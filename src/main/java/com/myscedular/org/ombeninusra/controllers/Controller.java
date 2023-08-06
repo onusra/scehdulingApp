@@ -1,16 +1,16 @@
 package com.myscedular.org.ombeninusra.controllers;
 
 
+import com.myscedular.org.ombeninusra.dao.Login;
 import com.myscedular.org.ombeninusra.entities.UserAccount;
 import com.myscedular.org.ombeninusra.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@CrossOrigin
 
 //This annotations means this is a rest controller
 @RestController
@@ -35,4 +35,10 @@ public class Controller {
     public List<UserAccount> getAllUser(){
         return userAccountService.getAllUsers();
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Login login){
+        return userAccountService.login(login);
+    }
+
 }
